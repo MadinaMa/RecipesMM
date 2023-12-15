@@ -1,0 +1,62 @@
+body {
+  background-image: url(Chef.gif);
+  background-repeat: no-repeat;
+  background-size: 100%;
+  background-color: #693624;
+
+}
+
+.find {
+  margin-top: 150px;
+
+}
+
+.container1 {
+width: 450px;
+height: 300px;
+ text-align: center;
+ margin-left: 50px;
+ background-color: rgb(171,201,206);
+ opacity: 0.6;
+ border-radius: 30%;
+
+
+}
+.btn {
+  margin-top: 25px;
+}
+
+.recipes {
+  margin-top: 150px;
+  background-color: rgb(171,201,206);
+  width: 400px;
+  align-items: center;
+}
+
+.container2 {
+  display: flex;
+justify-content: center;
+
+
+
+
+}
+
+.list {
+ 
+  flex-direction: column;
+ align-items: center;
+  list-style-type: none;
+}
+
+h1, h2 {
+  font-family: 'Itim', cursive;
+}
+
+p, li, h3 {
+  font-family: 'Comic Neue', cursive;
+}
+p {
+  font-size: 20px;
+}
+
