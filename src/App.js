@@ -4,9 +4,6 @@ import EachRecipe from './EachRecipe';
 
 function App() {
 
-  function showAlert() {
-    alert ( "Now, scroll down to see the best recipes with {requestSubmitted} ")
-  }
 
   const MY_ID = "18e16315";
   const MY_KEY = "0956e36ba8bb4b9716d24f9384306aea";
@@ -14,18 +11,23 @@ function App() {
   
 const [mySearch, setMySearch] = useState ("");
 const [myRecipes, setMyRecipes] = useState([]);
-const [requestSubmitted, setRequestSubmitted] = useState("hazelnut");
+const [requestSubmitted, setRequestSubmitted] = useState("");
 
 
 useEffect(() => {
   const getRecipe = async () => {
+    if (requestSubmitted !== '') {
   const response = await fetch(`https://api.edamam.com/api/recipes/v2?type=public&q=${requestSubmitted}&app_id=${MY_ID}&app_key=${MY_KEY}`);
   const data = await response.json();
   setMyRecipes(data.hits);
-  console.log(data.hits);
+  //console.log(data.hits);//
+  showAlert();
+  
+    }
 
   }
   getRecipe()
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [requestSubmitted])
 
 
@@ -33,14 +35,14 @@ useEffect(() => {
     setMySearch(e.target.value)
  }
  
- function finalSearch() {
+ function finalSearch(e) {
+   e.preventDefault()
    setRequestSubmitted(mySearch)
    }
- 
 
-
-
- const bothClicks = finalSearch.bind (this,showAlert);
+   function showAlert() {
+    alert ( `Now, scroll down to see the best recipes with ${requestSubmitted}!`)
+  }
 
 
   return (<div className='find'>
@@ -53,16 +55,10 @@ useEffect(() => {
  
      <form onSubmit={finalSearch}>
          <input className='search' placeholder='Search...' onChange={myRecipeSearch} value={mySearch}/>
+         <button className='btn'> Find recipe </button>
     </form>
   
- 
-     <button className='btn' onClick={bothClicks}>
-         Find recipe
-      </button>
     </div>
-
-  
-
 
     {myRecipes.map((element, index) => (
      <EachRecipe key={index}
@@ -71,8 +67,7 @@ useEffect(() => {
      cuisineType = {element.recipe.cuisineType}
      ingredients={element.recipe.ingredientLines}
      dietLabels = {element.recipe.dietLabels}
-     totalTime = {element.recipe.totalTime}
-/>
+     totalTime = {element.recipe.totalTime}/>
    ))}
 
     </div>
