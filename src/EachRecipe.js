@@ -2,6 +2,7 @@ function EachRecipe({label, image, cuisineType, ingredients, dietLabels,  totalT
 
     return(
         <div className="recipes">
+            
             <div className="container2">
             <h2> {label} </h2>
             </div>
@@ -29,7 +30,6 @@ function EachRecipe({label, image, cuisineType, ingredients, dietLabels,  totalT
                <p> Cooking time: { totalTime} min. </p>
             </div>
             
-
         </div>
     )
 }
